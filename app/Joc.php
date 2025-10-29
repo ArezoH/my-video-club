@@ -1,6 +1,9 @@
 <?php
-include_once( __DIR__ . "/Soport.php");
-class Joc extends Soport {
+
+namespace Dwes\ProjecteVideoclub;
+
+class Joc extends Soport
+{
     public string $consola;
     private int $minNumJugadors;
     private int $maxNumJugadors;
@@ -19,17 +22,21 @@ class Joc extends Soport {
         $this->maxNumJugadors = $maxNumJugadors;
     }
 
-    public function mostraJugadorsPossibles(): string {
-        if ($this->minNumJugadors == 1 && $this->maxNumJugadors == 1) {
+    public function mostraJugadorsPossibles(): string
+    {
+        if ($this->minNumJugadors === 1 && $this->maxNumJugadors === 1) {
             return "Per a un jugador";
-        } elseif ($this->minNumJugadors == $this->maxNumJugadors) {
-            return "Per a {$this->minNumJugadors} jugadors";
-        } else {
-            return "De {$this->minNumJugadors} a {$this->maxNumJugadors} jugadors";
         }
+
+        if ($this->minNumJugadors === $this->maxNumJugadors) {
+            return "Per a {$this->minNumJugadors} jugadors";
+        }
+
+        return "De {$this->minNumJugadors} a {$this->maxNumJugadors} jugadors";
     }
 
-    public function mostraResum(): void {
+    public function mostraResum(): void
+    {
         echo "Joc per {$this->consola}:<br>";
         parent::mostraResum();
         echo $this->mostraJugadorsPossibles() . "<br>";
